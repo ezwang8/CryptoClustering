@@ -60,31 +60,47 @@ The goal of this project is to use unsupervised learning to identify the impactf
    In Jupyter, locate the `Crypto_Clustering.ipynb` file and run the cells for analysis.
 
 ## File Roles
-- **retrieve_data.ipynb:** The main script that performs the analysis. It retrieves, processes, and analyzes CME and GST data from NASA's API.
-- **.env:** The file that contains the NASA API key, which is required for accessing the API securely.
+- **Crypto_Clustering.ipynb:** The main script that performs the analysis. It retrieves, processes, and analyzes the data from the "crypto_market_data" file.
+- **crypto_market_data.csv:** The csv file that contains the data of price fluctuations in the cryptocurrency market.
 
 ## Steps
-1. **Request CME Data:**
-   - Use NASA's DONKI API to request Coronal Mass Ejection (CME) data. 
-   - Keep the essential columns (`activityID`, `startTime`, and `linkedEvents`). Remove the rows without any `linkedEvents` since those sections aren't related to GSTs.
 
-2. **Request GST Data:**
-   - Use NASA API to request Geomagnetic Storm (GST) data.
-   - Keep the essential columns (`activityID`, `startTime`, and `linkedEvents`). Clean the data by exploding the `linkedEvents` field, so every entry is related to a GST event.
+1. **Load the Crypto Data:**
+   - Convert and read the `crypto_market_data.csv` file as a DataFrame.
+   - Check if the dataset is clean and consistent by displaying a sample of its data.
 
-3. **Merge and Clean the Data:**
-   - Merge the two datasets (CME and GST) on the columns (`gstID`, `CME_ActivityID`, `GST_ActivityID`, and `cmeID`).
-   - Check the make sure the merged dataset's rows match between both DataFrames. Drop any unnecessary columns or null values.
+2. **Data Preparation:**
+   - Standardize the data with `StandardScaler` to make sure all of the features have a similar scale.
+   - Save the standardized data into a new DataFrame.
 
-4. **Calculate Time Difference:**
-   - Create a new column called `timeDiff` to compare the start times of the CME and the GST.
+3. **Best Value for `k` (Elbow Method):**
+   - Use the Elbow Method to find the best value of `k` for K-means clustering.
+   - Loop through possible `k` values, from a range of 1 to 11, and compute the inertia for each value.
+   - Plot a line chart with all the inertia values and locate the "elbow point" in the graph to select the optimal `k`.
 
-5. **Descriptive Statistics:**
-   - Use the `describe()` function to create key statistics for the `timeDiff` column. The statistics help us check how long it takes for a CME to turn into a GST event.
+4. **Clustering with K-means (Original Scaled Data):**
+   - Initialize and fit the K-Means model using the best value for `k`.
+   - Predict the clusters and add them as a new column as cluster labels.
+   - Identify the clusters by vizualizing them with a scatter plot.
 
-6. **Export Cleaned Data:**
-   - Export the cleaned and merged dataset to a CSV file, without the DataFrame's index, for future analysis.
+5. **Optimize Clusters with Principal Component Analysis (PCA):**
+   - Use the PCA model to reduce to three principal components.
+   - Calculate the total explained variance by adding the variance percentages of each principal component together.
+
+6. **Best Value for `k` (PCA Data):**
+   - Repeat the Elbow Method with the PCA data to find its best `k`.
+   - Plot a line chart with all the inertia values and locate the "elbow point" in the graph to select the optimal `k`.
+
+7. **Clustering with K-means (PCA Data):**
+   - Initialize and fit the K-Means model, with PCA Data, using the best value for `k`.
+   - Predict the clusters and add them as a new column in the PCA DataFrame.
+   - Identify PCA Data's clusters by vizualizing them with a scatter plot.
+
+8. **Calculate Feature Weights on each Principal Component:**
+   - Create a DataFrame to find the weights of each feature on the principal components.
+   - Calculate the strongest positive and negative influences, on each component, to find key drivers of fluctuations in the data.
 
 ## Summary
-- The statistics created from the timeDiff column has found that the average time difference between the detection of a CME and the onset of a GST is around 2-3 days.
-- With this information, NASA and the Space Weather Prediction Center will now have a clearer idea on predicting upcoming storms that would impact their satellite and power grid systems.
+- With the Elbow Method, we found that the optimal number of clusters for this cryptocurrency data is 4. This applies in both the original and PCA-transformed data.
+- Optimizing the clusters with PCA revealed that 89.5% of the data’s total variance is explained by the top three components.
+- THe clustering analysis concludes with finding the features with the strongest influence, for each PCA. They are "price_change_percentage_200d", "price_change_percentage_30d", and "price_change_percentage_7d".
