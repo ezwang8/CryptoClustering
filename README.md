@@ -103,4 +103,4 @@ The goal of this project is to use unsupervised learning to identify the impactf
 ## Summary
 - With the Elbow Method, we found that the optimal number of clusters for this cryptocurrency data is 4. This applies in both the original and PCA-transformed data.
 - Optimizing the clusters with PCA revealed that 89.5% of the data’s total variance is explained by the top three components.
-- THe clustering analysis concludes with finding the features with the strongest influence, for each PCA. They are "price_change_percentage_200d", "price_change_percentage_30d", and "price_change_percentage_7d".
+- The clustering analysis concludes with finding the features with the strongest influence, for each PCA. They are "price_change_percentage_200d", "price_change_percentage_30d", and "price_change_percentage_7d".
