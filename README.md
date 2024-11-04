@@ -10,8 +10,8 @@ The goal of this project is to use unsupervised learning to identify the impactf
    git clone https://github.com/ezwang8/CryptoClustering.git
    ```
 
-2. **Ensure Python is installed:**
-   Verify Python installation:
+2. **Make sure Python is installed:**
+   Verify Python's installation with:
    ```bash
    python --version
    ```
