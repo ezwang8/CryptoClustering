@@ -1,20 +1,21 @@
 # Crypto Clustering Challenge
 
 ## Project Overview
-The program is tasked to classify cryptocurrencies according to their price fluctuations across various timeframes. We achieve this by utilizing K-means algorithm and principal component analysis (PCA)
+The goal of this project is to use unsupervised learning to identify the impactful clusters of cryptocurrencies. By using techniques that use the K-means algorithm and Principal Component Analysis (PCA), we can classify cryptocurrencies based on their price fluctuations during specific timeframes. A successful program would give us valuable insights on the current standing of cryptocurrencies and its ongoing market behaviors.
 
 ## Installation Instructions
+
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/ezwang8/data-sourcing-challenge.git
+   git clone https://github.com/ezwang8/CryptoClustering.git
    ```
-   
+
 2. **Ensure Python is installed:**
    Verify Python installation:
    ```bash
    python --version
    ```
-   If not installed, download it from [python.org](https://www.python.org/downloads/).
+   If Python is not installed, download it from [python.org](https://www.python.org/downloads/).
 
 3. **Install Jupyter Notebook:**
    If Jupyter is not installed, run:
@@ -22,36 +23,41 @@ The program is tasked to classify cryptocurrencies according to their price fluc
    pip install jupyter
    ```
 
-4. **Install necessary Packages:**
+4. **Install Necessary Packages:**
 
-   Install pandas for data manipulation and analysis:
+   - Install `pandas` for data manipulation and analysis:
+     ```bash
+     pip install pandas
+     ```
+
+   - Install `scikit-learn` for K-Means clustering and PCA:
+     ```bash
+     pip install scikit-learn
+     ```
+
+   - Install `matplotlib` for data visualization:
+     ```bash
+     pip install matplotlib
+     ```
+
+   - Install `hvplot` for interactive plotting:
+     ```bash
+     pip install hvplot
+     ```
+
+5. **Navigate to the Project Directory:**
    ```bash
-   pip install pandas
+   cd CryptoClustering
    ```
 
-   Install requests for making API calls to NASA's API:
-   ```bash
-   pip install requests
-   ```
-
-   Install python-dotenv for loading environment variables (the API key) from a .env file:
-   ```bash
-   pip install python-dotenv
-   ```
-
-6. **Navigate to the Project Directory:**
-   ```bash
-   cd athletic_sales_analysis
-   ```
-
-7. **Launch Jupyter Notebook:**
+6. **Launch Jupyter Notebook:**
    Open the notebook interface:
    ```bash
    jupyter notebook
    ```
 
-8. **Open the Notebook:**
-   In Jupyter, locate the `retrieve_data.ipynb` file and run the cells for analysis.
+7. **Open the Notebook:**
+   In Jupyter, locate the `Crypto_Clustering.ipynb` file and run the cells to execute the analysis and clustering tasks.
 
 ## File Roles
 - **retrieve_data.ipynb:** The main script that performs the analysis. It retrieves, processes, and analyzes CME and GST data from NASA's API.
