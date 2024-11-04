@@ -57,7 +57,7 @@ The goal of this project is to use unsupervised learning to identify the impactf
    ```
 
 7. **Open the Notebook:**
-   In Jupyter, locate the `Crypto_Clustering.ipynb` file and run the cells to execute the analysis and clustering tasks.
+   In Jupyter, locate the `Crypto_Clustering.ipynb` file and run the cells for analysis.
 
 ## File Roles
 - **retrieve_data.ipynb:** The main script that performs the analysis. It retrieves, processes, and analyzes CME and GST data from NASA's API.
